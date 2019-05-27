@@ -6,10 +6,12 @@
 				font-family: cursive
 			}
 		</style>
-
+		<script src="compiled/moment.js"></script>
 		<script src="compiled/jquery.min.js"></script>
 
 		<script src="compiled/flipclock.js"></script>	
+		<script src="compiled/moment-tz.js"></script>
+
 	</head>
 	<body>
 		<h2>I'll see Vicki again in</h2><br>
@@ -20,14 +22,17 @@
 			$(document).ready(function() {
 
 				// Grab the current date
-				var currentDate = new Date();
-				console.log(currentDate);
+				//var currentDate = new Date();
+				var currentDate = moment().tz("Europe/London");
+				console.log(currentDate.format());
 
 				// Set some date in the past. In this case, it's always been since Jan 1
-				var futureDate  = new Date('2019/08/24 04:45');
-
+				var futureDate  = moment.tz("2019-08-23 20:45", "Europe/London");
+				console.log(futureDate.format())
+				console.log(new Date(futureDate));
+				console.log(new Date(futureDate)-new Date(currentDate));
 				// Calculate the difference in seconds between the future and current date
-				var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+				var diff = new Date(futureDate)/1000-new Date(currentDate)/1000;
 
 				// Instantiate a coutdown FlipClock
 				clock = $('.clock').FlipClock(diff, {
