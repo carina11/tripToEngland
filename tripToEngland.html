@@ -22,17 +22,13 @@
 			$(document).ready(function() {
 
 				// Grab the current date
-				//var currentDate = new Date();
 				var currentDate = moment().tz("Europe/London");
-				console.log(currentDate.format());
 
 				// Set some date in the past. In this case, it's always been since Jan 1
 				var futureDate  = moment.tz("2019-08-23 20:45", "Europe/London");
-				console.log(futureDate.format())
-				console.log(new Date(futureDate));
-				console.log(new Date(futureDate)-new Date(currentDate));
+
 				// Calculate the difference in seconds between the future and current date
-				var diff = new Date(futureDate)/1000-new Date(currentDate)/1000;
+				var diff = new Date(futureDate-currentDate)/1000;
 
 				// Instantiate a coutdown FlipClock
 				clock = $('.clock').FlipClock(diff, {
